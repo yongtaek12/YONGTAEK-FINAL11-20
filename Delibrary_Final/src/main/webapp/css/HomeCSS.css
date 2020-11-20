@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+/* carousel */
+.carousel-indicators1 {
+	right: 0;
+	bottom: -30px;
+}
+
+.carousel-indicators1 li {
+	outline: 1px solid lightgray;
+}
+
+.carousel-indicators1 .active {
+	outline: 1px solid black;
+}
+
+.img-fluid {
+	height: 250px;
+}
+
+.card-body {
+	height: 60px;
+	padding: 0;
+	text-align: center;
+}
+
+.book-title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: large;
+	font-weight: bold;
+}
+
+.controls-bottom {
+	display: inline-block;
+	float: right;
+}
+
+.carousel-inner {
+	height: 340px;
+}
+
+/* tabs */
+.home_post_title {
+	width: 60%;
+	text-align: left;
+	font-size: medium;
+	font-weight: normal;
+}
+
+.home_post_date {
+	width: 40%;
+	font-size: medium;
+	font-weight: lighter;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: black;
+	text-decoration: none;
+}
+
+/* 각 도서관 행사정보 링크 */
+.event-link {
+	text-align: center;
+	text-decoration: underline;
+	font-size: x-large;
+	font-weight: bolder;
+	margin: 0;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+.event-title {
+	background-color: gray;
+	text-align: center;
+	font-size: xx-large;
+	height: 80px;
+	color: white;
+	font-weight: bolder;
+}

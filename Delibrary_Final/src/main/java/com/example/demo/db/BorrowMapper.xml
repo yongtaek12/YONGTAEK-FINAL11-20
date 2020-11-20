@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="borrow">
+
+	<insert id="insertBorrow" parameterType="borrowVO">
+		insert into borrow
+		values(#{bor_no},#{bor_date},#{return_date},#{return_ok},#{cust_no},#{b_no})
+	</insert>
+	<!-- <delete id="deleteBorrow" parameterType="borrowVO"> delete borrow where 
+		BOR_NO=#{BOR_NO} </delete> -->
+	<select id="getNextNo" resultType="java.lang.Integer">
+		select nvl(max(bor_no),0)+1 from borrow
+	</select>
+
+	<!-- 
+	<update id="updateBorrow">
+		update Borrow set B_COUNT=#{B_COUNT}-1 where B_NO=#{B_NO}
+	</update>
+	 -->
+
+	 <select id="selectBycust_No" resultType="borrowVO2">
+    SELECT
+    b.b_title, 
+    b.b_image,
+    b.b_publisher,
+    b.b_writer,
+    b.b_price, 
+    b.b_detail,
+    b.b_year,
+    a.bor_no,
+    a.b_no,
+	a.bor_date,
+	a.return_date,
+	a.return_ok,
+	a.cust_no
+	FROM borrow a, book b where a.b_no = b.b_no and cust_no = #{cust_no}
+	
+    	
+    	<if test = "return_ok!=null">
+    		AND return_ok = #{return_ok} order by 1 	
+    	</if>
+    	
+ 	    <if test = "return_date!=null">
+    		AND return_date > sysdate and return_ok like 'N' order by 1	
+    	</if>   	 
+  </select> 
+    <update id="updateBorrow">
+  	update borrow set bor_date=#{bor_date}, return_date=#{return_date}, return_ok=#{return_ok}, b_no=#{b_no}, cust_no=#{cust_no}  where bor_no=#{bor_no}
+  </update>
+  <delete id="deleteBorrow">
+  	DELETE FROM BORROW WHERE bor_no=#{bor_no}
+  </delete>
+  	<!-- 사용자가 대여한 수량  -->
+    <select id="calB_no" resultType="java.lang.Integer">
+	select count(b_no) from BORROW where cust_no=#{cust_no}
+	</select>
+  
+
+	 
+	<!-- 모든 정보 가져오기[재성] -->
+	<select id="findAll" resultType="borrowVO">
+		select * from borrow
+	</select>
+	
+
+</mapper>
+

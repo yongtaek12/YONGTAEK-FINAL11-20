@@ -1,0 +1,128 @@
+
+/* =============================== 현왕 hr css =================================== */
+#updateCustomer > hr{
+	border: #e6e6e6 1px dotted;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+#fol_div > hr{
+	border: black 1px black;
+}
+/* =============================== 현왕 hr css =================================== */
+
+/* =============================== 현왕 hr css =================================== */
+.col-md-9 > #updateCustomer{
+	padding-top: 50px;	
+}
+/* =============================== 현왕 hr css =================================== */
+
+/* =============================== 현왕 모달창 내부 css =================================== */
+    .modal_wrap .title{
+		font-size:20px;
+		padding: 20px; 
+		background : gold;
+		border-radius: 10px;
+		font-weight: bold;
+	}
+	.modal_wrap{
+        display: none;
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top:50%;
+        left: 50%;
+        margin: -250px 0 0 -250px;
+        background:#eee;
+        z-index: 3;
+        font-family: sans-serif;
+        text-align: center;
+        border-radius: 10px;
+    }
+    .black_bg{
+        display: none;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color:rgba(0, 0,0, 0.5);
+        top:0;
+        left: 0;
+        z-index: 1;
+    }
+    
+/* =============================== 현왕 모달창 내부 css 종료 =================================== */
+
+/* =============================== 현왕 모달창 열기 & 내부 버튼 css 시작 =================================== */
+#modal_btn, #btn_pw_ok, .modal_close {
+    background-color: white;
+    color: #17A2B8;
+    border: solid 1px #17A2B8;
+	border-radius: 5px;
+    cursor: pointer;
+	font-family: inherit;
+}
+#modal_btn:hover, #btn_pw_ok:hover, .modal_close:hover{
+			background-color: #17A2B8;
+			color: white;
+		}
+/* =============================== 현왕 모달창 열기 & 내부 버튼 css 종료 =================================== */
+
+/* =============================== 현왕 암호 입력 input css 시작 =================================== */
+#pw{
+	width: 300px;
+    line-height:30px;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+		
+}
+/* =============================== 현왕 암호 입력 input css 종료 =================================== */
+
+/* ----- 현왕 select option CSS -------- */
+select {
+	width: 100px;
+	padding: 2px;
+	border: 1px solid #17A2B8;
+	color: #17A2B8;
+	font-family: inherit;
+	background: url('../img/arrow.png') no-repeat 95% 50%;
+	border-radius: 5px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
+/* ----- 현왕 select option CSS -------- */
+
+/* ----- 현왕 이메일&아이디 input type=text CSS -------- */
+#email{
+    width:220px;
+    line-height:30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border:1px solid #CCC;
+}
+
+#id{
+	width: 30%;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	line-height: 30px;
+	text-align: center;
+}
+
+/* ----- 현왕 이메일 input type=text CSS -------- */
+
+
+/* 현왕추가 */
+#updateCustomer {
+	width: 500px;
+	margin: auto;
+}	
+
+#upload_click{
+     	cursor: pointer;
+}
