@@ -5,8 +5,8 @@
 <mapper namespace="borrow">
 
 	<insert id="insertBorrow" parameterType="borrowVO">
-		insert into borrow
-		values(#{bor_no},#{bor_date},#{return_date},#{return_ok},#{cust_no},#{b_no})
+		insert into borrow(bor_no,cust_no,b_no)
+		values(#{bor_no},#{cust_no},#{b_no})
 	</insert>
 	<!-- <delete id="deleteBorrow" parameterType="borrowVO"> delete borrow where 
 		BOR_NO=#{BOR_NO} </delete> -->
@@ -19,7 +19,7 @@
 		update Borrow set B_COUNT=#{B_COUNT}-1 where B_NO=#{B_NO}
 	</update>
 	 -->
-
+	<!-- 북카트 list-->
 	 <select id="selectBycust_No" resultType="borrowVO2">
     SELECT
     b.b_title, 
@@ -36,17 +36,42 @@
 	a.return_ok,
 	a.cust_no
 	FROM borrow a, book b where a.b_no = b.b_no and cust_no = #{cust_no}
+	and bor_date is null
+		
+    	
+  </select> 
+  
+  		<!-- 대출현황 / 대출반납이력 list-->	 
+  	 <select id="selectBycust_No2" resultType="borrowVO2">
+    SELECT
+    b.b_title, 
+    b.b_image,
+    b.b_publisher,
+    b.b_writer,
+    b.b_price, 
+    b.b_detail,
+    b.b_year,
+    a.bor_no,
+    a.b_no,
+	a.bor_date,
+	a.return_date,
+	a.return_ok,
+	a.cust_no
+	FROM borrow a, book b where a.b_no = b.b_no and cust_no = #{cust_no}
 	
+		
     	
     	<if test = "return_ok!=null">
-    		AND return_ok = #{return_ok} order by 1 	
+    			AND return_ok like 'Y' 
+    			AND return_date > sysdate order by 1
     	</if>
     	
  	    <if test = "return_date!=null">
-    		AND return_date > sysdate and return_ok like 'N' order by 1	
+    		AND sysdate > return_date order by 1	
     	</if>   	 
-  </select> 
-    <update id="updateBorrow">
+  </select>
+  
+   <update id="updateBorrow">
   	update borrow set bor_date=#{bor_date}, return_date=#{return_date}, return_ok=#{return_ok}, b_no=#{b_no}, cust_no=#{cust_no}  where bor_no=#{bor_no}
   </update>
   <delete id="deleteBorrow">

@@ -50,12 +50,21 @@ public static SqlSessionFactory sqlSessionFactory;
 	//북카트 출력
 
 
-
+	//북카트 출력
 	public static List<BorrowVO2> selectBycust_No(HashMap map) {
 		// TODO Auto-generated method stub
 		List<BorrowVO2> list = null;
 		SqlSession session=sqlSessionFactory.openSession();
 		list=session.selectList("borrow.selectBycust_No", map);
+		session.close();
+		return list;
+	}
+	//대출현황 출력
+	public static List<BorrowVO2> selectBycust_No2(HashMap map) {
+		// TODO Auto-generated method stub
+		List<BorrowVO2> list = null;
+		SqlSession session=sqlSessionFactory.openSession();
+		list=session.selectList("borrow.selectBycust_No2", map);
 		session.close();
 		return list;
 	}

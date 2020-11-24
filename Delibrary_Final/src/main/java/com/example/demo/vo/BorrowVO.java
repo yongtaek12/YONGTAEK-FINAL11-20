@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 public class BorrowVO {
 	private int bor_no;
 
-	//@JsonFormat(pattern = "yyyy-MM-DD")
+	@DateTimeFormat(pattern = "yyyy-MM-DD")
 	private Date bor_date;
 	//@JsonFormat(pattern = "yyyy-MM-DD")
-
+	@DateTimeFormat(pattern = "yyyy-MM-DD")
 	private Date return_date;
 	private String return_ok;
 	private int cust_no;
@@ -58,6 +58,13 @@ public class BorrowVO {
 		return b_no;
 	}
 	public void setB_no(int b_no) {
+		this.b_no = b_no;
+	}
+	
+	public BorrowVO(int bor_no, int cust_no, int b_no) {
+		super();
+		this.bor_no = bor_no;
+		this.cust_no = cust_no;
 		this.b_no = b_no;
 	}
 	public BorrowVO(int bor_no, Date bor_date, Date return_date, String return_ok, int cust_no, int b_no) {

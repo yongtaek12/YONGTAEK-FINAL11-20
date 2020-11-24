@@ -15,6 +15,217 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
   <title>도서정보 - 딜리브러리</title>
+  <style>
+  
+
+// font stuff
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900);
+
+
+// colour stuff
+@white: #ffffff;
+@lightBG: #dce1df;
+@salmon: #ff6666;
+
+@teal: #0096a0;
+@tealMid: #0ebac7;
+@tealContrast: #33ffff;
+@tealShade:	#007c85;
+
+@darkGrey: #4f585e;
+
+body {
+  background: @lightBG;
+  color: @darkGrey;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+a.btn {
+  background: @teal;
+  border-radius: 4px;
+	box-shadow: 0 2px 0px 0 rgba(0,0,0,0.25);
+  color: @white;
+  display: inline-block;
+  padding: 6px 30px 8px;
+  position: relative;
+  text-decoration: none;
+	transition: all 0.1s 0s ease-out;
+}
+
+.no-touch a.btn:hover {
+  background: lighten(@teal,2.5);
+  box-shadow: 0px 8px 2px 0 rgba(0, 0, 0, 0.075);
+  transform: translateY(-2px);
+  transition: all 0.25s 0s ease-out;
+}
+
+.no-touch a.btn:active,
+a.btn:active {
+  background: darken(@teal,2.5);
+  box-shadow: 0 1px 0px 0 rgba(255,255,255,0.25);
+  transform: translate3d(0,1px,0);
+  transition: all 0.025s 0s ease-out;
+}
+
+div.cards {
+  margin: 80px auto;
+  max-width: 960px;
+  text-align: center;
+}
+
+div.card {
+  background: @white;
+  display: inline-block;
+  margin: 8px;
+  max-width: 300px;
+  perspective: 1000;
+  position: relative;
+  text-align: left;
+  transition: all 0.3s 0s ease-in;
+  width: 300px;
+  z-index: 1;
+
+  img {
+    max-width: 300px;
+  }
+  
+  .card__image-holder {
+    background: rgba(0,0,0,0.1);
+    height: 0;
+    padding-bottom: 75%;
+  }
+
+  div.card-title {
+    background: @white;
+    padding: 6px 15px 10px;
+    position: relative;
+    z-index: 0;
+    
+    a.toggle-info {
+      border-radius: 32px;
+      height: 32px;
+      padding: 0;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      width: 32px;
+      
+      span {
+        background: @white;
+        display: block;
+        height: 2px;
+        position: absolute;
+        top: 16px;
+        transition: all 0.15s 0s ease-out;
+        width: 12px;
+      }
+      
+      span.left {
+        right: 14px;
+        transform: rotate(45deg);
+      }
+      span.right {
+        left: 14px;
+        transform: rotate(-45deg);
+      }
+    }
+    
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      margin: 0;
+      padding: 0;
+      
+      small {
+        display: block;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+      }
+    }
+  }
+
+  div.card-description {
+    padding: 0 15px 10px;
+    position: relative;
+    font-size: 14px;
+  }
+
+  div.card-actions {
+  	box-shadow: 0 2px 0px 0 rgba(0,0,0,0.075);
+    padding: 10px 15px 20px;
+    text-align: center;
+  }
+  
+  div.card-flap {
+    background: darken(@white,15);
+    position: absolute;
+    width: 100%;
+    transform-origin: top;
+    transform: rotateX(-90deg);
+  }
+  div.flap1 {
+    transition: all 0.3s 0.3s ease-out;
+    z-index: -1;
+  }
+  div.flap2 {
+    transition: all 0.3s 0s ease-out;
+    z-index: -2;
+  }
+  
+}
+
+div.cards.showing {
+  div.card {
+    cursor: pointer;
+    opacity: 0.6;
+    transform: scale(0.88);
+  }
+}
+
+.no-touch  div.cards.showing {
+  div.card:hover {
+    opacity: 0.94;
+    transform: scale(0.92);
+  }
+}
+
+div.card.show {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+
+  div.card-title {
+    a.toggle-info {
+      background: @salmon !important;
+      span {
+        top: 15px;
+      }
+      span.left {
+        right: 10px;
+      }
+      span.right {
+        left: 10px;
+      }
+    }
+  }
+  div.card-flap {
+    background: @white;
+    transform: rotateX(0deg);
+  }
+  div.flap1 {
+    transition: all 0.3s 0s ease-out;
+  }
+  div.flap2 {
+    transition: all 0.3s 0.2s ease-out;
+  }
+}
+  
+  </style>
+  
+  
+  
 <!-- kakao 검색 API -->
 
 <script type="text/javascript">
@@ -40,32 +251,7 @@
 					var ul = $('<ul></ul>').addClass('card-list');
 					var totalPage;
 	
-					for(let i = 0; i < msg.documents.length; i++) {
-						var li = $('<li></li>').addClass('card');
-						var a = $('<a></a>').addClass('card-image')
-						$(a).css('background-image', 'url(' + msg.documents[i].thumbnail + ')');
-						$(a).attr('data-image-full', msg.documents[i].thumbnail);
-						a.css("width", "120px");
-						a.css("height","174px");
-						var img = $('<img>').attr('src', msg.documents[i].thumbnail);
 	
-						var a2 = $('<a></a>');
-						$(a2).addClass('card-description');
-						$(a2).attr('target', '_blank');
-						
-						var h4 = $('<h4></h4>').text(msg.documents[i].title);
-						var p = $('<p></p>').text(msg.documents[i].authors);
-	
-						$(a).append(img);
-						$(li).append(a);
-						
-						$(a2).append(h4);
-						$(a2).append(p);
-						$(li).append(a2);
-	
-						$(ul).append(li);
-						$('.searchResult-body').append(ul);
-					}
 					
 					let totalCount = msg.meta["pageable_count"];
 					if(pageNUM != 1){
@@ -106,111 +292,7 @@
 	});
 </script>
 
-<style type="text/css">
-	/* Lazy Load Styles */
-	.card-image {
-		display: block;
-		background: #fff center center no-repeat;
-		background-size: cover;
-		margin: 0 auto;
-		/* filter: blur(3px); /* blur the lowres image */ */
-	}
-	
-	.card-image > img {
-		display: block;
-		width: 100%;
-		opacity: 0; /* visually hide the img element */
-	}
-	
-	.card-image.is-loaded {
-		filter: none; /* remove the blur on fullres image */
-		transition: filter 1s;
-		margin: 0 auto;
-	}
-	
-	/* Layout Styles */
-	
-	.card-list {
-		display: block;
-		padding: 0;
-		font-size: 0;
-		text-align: center;
-		list-style: none;
-		width: 825px;
-	}
-	
-	.card-body {
-		padding: 0;
-	}
-	
-	.card {
-		display: inline-block;
-		width: 200px;
-		height: 250px;
-		margin: 1rem;
-		font-size: 1rem;
-		text-decoration: none;
-		overflow: hidden;
-		box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, 0.5);
-		transition: transform 0.1s ease-in-out, box-shadow 0.1s;
-	}
-	
-	.card:hover {
-		transform: translateY(-0.5rem) scale(1.0125);
-		box-shadow: 0 0.5em 3rem -1rem rgba(0, 0, 0, 0.5);
-	}
-	
-	.card-description {
-		display: block;
-		color: #515151;
-		width: 200px;
-		height: 100px;
-		text-align: center;
-	}
-	
-	.card-description > h4 {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		font-size: large;
-		font-weight: bold;
-	}
-	
-	.searchResult-body {
-		margin-right: 150px;
-		float: left;
-		width: 60%;
-	}
-	
-	.searchResult-options {
-		margin-left: 150px;
-		float: left;
-		width: 20%;
-		text-align: center;
-	}
-	
-	.paging {
-		margin: 0 auto;
-		text-align: center;
-		width: 100%;
-		float: left;
-	}
-	
-	.paging-num {
-		margin: 0 10px;
-	}
-	
-	.input-group {
-		height: 26px;
-		padding: 25px 5px 25px 5px;
-		border: 1px; 
-		float: left;
-	}
-	
-	.searchResult-body {
-		float: left;
-	}
-</style>
+
 </head>
 <body>
 	<input type="hidden" value="${query}" id="query">
@@ -250,12 +332,12 @@
 							</ul>
 					</li>
 					<li class="nav-item dropdown">
-						<a href="mypage.html" class="nav-link dropdown-toggle" data-toggle="dropdown">나의도서</a>
+						<a href="mypage_main.do?cust_no=${cust_no }" class="nav-link dropdown-toggle" data-toggle="dropdown">나의도서</a>
 							<ul class="dropdown-menu dropdown-menu-left fade-down">
-								<li><a class="dropdown-item" href="mypage.html"> 나의도서정보</a></li>
+								<li><a class="dropdown-item" href="mypage_main.do?cust_no=${cust_no }"> 나의도서정보</a></li>
 								<li><a class="dropdown-item" href="lentBooks.html">대출현황/이력</a></li>
-								<li><a class="dropdown-item" href="#">내서재</a></li>
-								<li><a class="dropdown-item" href="MyPage_Info.do?cust_no=${cust_no}">개인정보수정</a></li>
+								<li><a class="dropdown-item" href="MyPage_Folder.do?cust_no=${cust_no }&group=50">내서재</a></li>
+								<li><a class="dropdown-item" href="MyPage_Info.do?cust_no=${cust_no }">개인정보수정</a></li>
 							</ul>
 					</li>
 				</ul>

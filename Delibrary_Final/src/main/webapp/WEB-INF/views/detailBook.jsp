@@ -35,7 +35,12 @@
 /*          !!!!!!!      지우지 마세요           !!!!!!!!          */
 /*          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!          */
 /*  ------------------------------------------ */
-
+.img{
+	 width: 85%;
+ 	 height: 90%;
+  	 padding : 30px;
+ 	 
+}
 html, body{
    height: 100%;
 }
@@ -47,204 +52,6 @@ html, body{
 .sidebar {
   border...
   
-  
-  /*
-연 f8f9fa
-진 343a40
-*/
-
-@media all and (min-width: 992px) {
-  .navbar .nav-item .dropdown-menu {
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
-    margin-top: 0;
-  }
-  .navbar .dropdown-menu.fade-down {
-    top: 80%;
-    transform: rotateX(-75deg);
-    transform-origin: 0% 0%;
-  }
-  .navbar .dropdown-menu.fade-up {
-    top: 180%;
-  }
-  .navbar .nav-item:hover .dropdown-menu {
-    transition: 0.3s;
-    opacity: 1;
-    visibility: visible;
-    top: 100%;
-    transform: rotateX(0deg);
-  }
-}
-
-.sidebar {
-  border: 1px solid gainsboro;
-}
-.side-head {
-  background: url('../img/side-head.jpg');
-  padding: 40px;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-.icons {
-  height: 15px;
-}
-
-.searchbar {
-  border-radius: 25px;
-  padding: 5px 25px;
-}
-
-#home-icons p {
-  font-size: 14px;
-}
-
-.btn {
-  border-radius: 25px;
-}
-
-.navbar .nav-link {
-  font-size: 14px;
-  text-transform: uppercase;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-}
-
-.carousel-item {
-  height: 600px;
-}
-
-.carousel-image-1 {
-  /* background: url('../img/image1.jpg'); */
-  background-color: cadetblue;
-  background-size: cover;
-}
-
-.carousel-image-2 {
-  /* background: url('../img/image2.jpg'); */
-  background-color: darkgoldenrod;
-  background-size: cover;
-}
-
-.carousel-image-3 {
-  /* background: url('../img/image3.jpg'); */
-  background-color: darkseagreen;
-  background-size: cover;
-}
-
-#home-heading {
-  position: relative;
-  min-height: 250px;
-  /* background: url('../img/lights.jpg'); */
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  text-align: center;
-  color: #fff;
-}
-
-.dark-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-}
-
-#video-play {
-  position: relative;
-  min-height: 200px;
-  background: url('../img/media.jpg');
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: 0 -300px;
-  text-align: center;
-  color: #fff;
-}
-
-#video-play a {
-  color: #fff;
-}
-
-#page-header {
-  height: 180px;
-  background: url('../img/image1.jpg');
-  background-position: 0 -360px;
-  background-attachment: fixed;
-  color: #fff;
-  border-bottom: 1px #eee solid;
-  padding-top: 20px;
-}
-
-.about-img {
-  margin-top: -50px;
-}
-
-#faq .card {
-  border: #444;
-}
-
-#faq a {
-  color: #fff;
-  text-decoration: none;
-}
-
-#faq .card-body,
-#faq .card-header {
-  background: #333;
-}
-
-#main-footer {
-  background: #000;
-  color: #fff;
-  flex-shrink: none;
-}
-
-/*  ------------------------------------------- */
-/*    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      */
-/*    !!!!!!!  공통부분 추가 css 입니다  !!!!!!!      */
-/*    !!!!!!!      지우지 마세요       !!!!!!!      */
-/*    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      */
-/*  ------------------------------------------- */
-
-
-html, body{
-   height: 100%;
-}
-
-#page-content{
-   flex: 1 0 auto;
-}
-
-.sidebar {
-  border: 1px solid gainsboro;
-}
-.side-head {
-  background: url('../img/side-head.jpg');
-  padding: 40px;
-}
-.sidebar a{
-   color: #343a40;
-}
-
-.searchbar {
-  border-radius: 25px;
-  padding: 5px 25px;
-}
-
-.list-group .active{
-   background-color: #f8f9fa;
-   color: #343a40;
-   border-color: #d8d8d8;
-} 
-
-#tbody a{
-   color: #343a40;
-}
 	
 	</style>
 	
@@ -505,7 +312,7 @@ _Example:_
   --bdrs: 5px;
 }
 /* For this demo only */
-body { font-family: system-ui, sans-serif; padding: 1rem; }
+body { font-family: system-ui, sans-serif; }
 /*버튼크기 
 button, details { width: 6rem; }*/
 button { font-family: inherit; font-size: inherit; }
@@ -738,50 +545,36 @@ $(function(){
 		buttons: {
 			
 			"대여": function() {
-				//대여 날짜를 선택
-				$('#dialog-borrow-date').dialog({
-					modal: true, 
-					buttons: {
-						"대출":function(){
-							insertBook();
-							
-							let BOR_DATE = document.getElementById("BOR_DATE").value
-							//let RETURN_DATE = BOR_DATE.setDate(BOR_DATE.getDate()+15);
-							//alert(RETURN_DATE);
-							var count = eval(${b.b_count });
-							var count2 = eval(${sumbook });
-							//alert(count2);
-							 var b_no = eval(${b.b_no });
-							 var cust_no = eval(${cust_no });
-							 alert(cust_no);
-							 var data= {"BOR_DATE" : BOR_DATE, "cust_no":cust_no, }
-							if(count2 >=5){
-								alert("대여가능 도서권수를 초과하였습니다")
-							}else{
-								
-								var b_no =eval(${b.b_no });
-								var cust_no =eval(${cust_no });
-								
-								$.ajax({
-									url :"/insertBorrow",
-									dataType:"Json",
-									data:data,
-										//"b_no="+b_no,
-									//data: "cust_no="+${cust_no }}
-									type: "POST",
-									success:function(data){
-										alert("대출완료")
-									},
-									error : function(){
-										alert("에러")		
-									}
-									});	
+				insertBook();
+				
+				var count = eval(${b.b_count });
+				var count2 = eval(${sumbook });
+				 var b_no = eval(${b.b_no });
+				 var cust_no = eval(${cust_no });
+				 var data= {"cust_no":cust_no, }
+					if(count2 >=100){
+						alert("대여가능 도서권수를 초과하였습니다")
+					}else{
+						
+						var b_no =eval(${b.b_no });
+						var cust_no =eval(${cust_no });
+						
+						$.ajax({
+							url :"/insertBorrow",
+							dataType:"Json",
+							data:data,
+								//"b_no="+b_no,
+							//data: "cust_no="+${cust_no }}
+							type: "POST",
+							success:function(data){
+								alert("대출완료")
+							},
+							error : function(){
+								alert("에러")		
 							}
-								//alert("대여완료")
-								$( this ).dialog( "close" );								
-							}				
-					}										
-				});	$( this ).dialog( "close" );				
+							});	
+					}$( this ).dialog( "close" );
+				//대여 날짜를 선택								
 		},"취소": function() { alert("취소하셨습니다.") }
 				 },					
 	});						
@@ -861,7 +654,7 @@ $(function(){
 						<a href="mypage.html" class="nav-link dropdown-toggle" data-toggle="dropdown">나의도서</a>
 							<ul class="dropdown-menu dropdown-menu-left fade-down">
 								<li><a class="dropdown-item" href="mypage_main.do?cust_no=${cust_no }"> 나의도서정보</a></li>
-								<li><a class="dropdown-item" href="lentBooks.html">대출현황/이력</a></li>
+								<li><a class="dropdown-item" href="borrowList.do">대출현황/이력</a></li>
 								<li><a class="dropdown-item" href="Mylibrary.jsp">내서재</a></li>
 								<li><a class="dropdown-item" href="MyPage_Info.do?cust_no=${cust_no}">개인정보수정</a></li>
 							</ul>
@@ -869,16 +662,16 @@ $(function(){
 				</ul>
 				<ul id="app" class="navbar-nav ml-auto">
 					<li class="nav-item" v-bind:title="login">
-						<a href="sitemap.html" class="nav-link"><i class="fas fa-sign-in-alt"></i></a>
+						<a href="LoginPage.do" class="nav-link"><i class="fas fa-sign-in-alt"></i></a>
 					</li>
 					<li class="nav-item" v-bind:title="signup">
-						<a href="sitemap.html" class="nav-link"><i class="fas fa-user-plus"></i></a>
+						<a href="insertCustomer.do" class="nav-link"><i class="fas fa-user-plus"></i></a>
 					</li>
 					<li class="nav-item" v-bind:title="bookcart">
 						<a href="BookCart.do" class="nav-link"><i class="fas fa-book"></i></a>
 					</li>
 					<li class="nav-item" v-bind:title="sitemap">
-						<a href="sitemap.html" class="nav-link"><i class="far fa-map"></i></a>
+						<a href="siteMap.do" class="nav-link"><i class="far fa-map"></i></a>
 					</li>
 					<script>
 						var app = new Vue({
@@ -937,7 +730,8 @@ $(function(){
               <!-- CARD GROUPS -->
               <div class="card-group">
                 <div class="card">
-                  <img id="b_image" class="card-img-top card-img-top"  src="img/${b.b_image }" alt="">
+                  <img id="b_image" class="img" src="img/${b.b_image }" alt=""style="margin-left: auto; margin-right: auto; display: block;"/>
+
                 </div>
                 <div class="card">
                   <div class="card-body">
@@ -997,11 +791,11 @@ $(function(){
 					style='color: green; font-size: 15pt;'> 대출하시겠습니까? </span> <!--  <span
 					style='font-size: 20pt;'>${sumbook } 개</span> --><span><b><u></u></b></span>
 			</div>
-			<!-- 도서대여 클릭시 두번째 화면 -->
+			<!-- 도서대여 클릭시 두번째 화면
 			<div id="dialog-borrow-date" title="대출일을 선택해주세요"
 				style='display: none'>
 				대출일 : <input type="date" name="BOR_DATE" id="BOR_DATE"><br>
-			</div>
+			</div> -->
             
             <!-- 내서재추가 클릭시 폴더 선택 화면 -->
             <div id="dialog-library" title="내폴더 선택" style='display: none'>

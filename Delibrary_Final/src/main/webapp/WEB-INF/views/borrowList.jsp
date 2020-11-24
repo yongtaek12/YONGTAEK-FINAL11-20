@@ -17,28 +17,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
-	<link rel="stylesheet" href="css/BookCart.css">
-		<link rel="stylesheet" href="css/style.css">
-	
-	
-
-	
-	
+  	<link rel="stylesheet" href="css/BookCart.css">
+  
+	<link rel="stylesheet" href="css/style.css">
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <title>도서정보 - 딜리브러리</title>
-  <style>
-
- 	.img-fluid {
-	  height: 250px;
-      width: 244px;
-	  
-	}
-	
-  
-  </style>
-
-  
-
+ 
   
 <script type="text/javascript"	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript"	src="../jquery-ui-1.12.1/jquery-ui.min.js"></script>
@@ -174,7 +158,7 @@ $(function(){
      //    });
        
 	///여가까지가  card-body.click
-	//js파일로 무빙
+	//화면 클릭시 효과 js로 이동예정
 	$(document).ready(function(){
 		  var zindex = 10;
 		  
@@ -225,7 +209,6 @@ $(function(){
 });
 	
 </script>
-
   
 </head>
 <body class="d-flex flex-column">
@@ -321,15 +304,53 @@ $(function(){
 		<div class="container">
 		  <div class="row">
 			<div class="col-md-6 m-auto text-center">
-			  <h1>북카트</h1>
+			  <h1>대출현황</h1>
 			</div>
 		  </div>
 		</div>
 	</header>
-
-
-
+	
   <!-- MAIN SECTION -->
+  <!-- 사이드바 -->
+	<section id="contact" class="py-3">
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-3">
+			  <div class="sidebar">
+					<div class="side-head">
+						<h4 class="text-light">대출현황</h4>
+					</div>
+					<ul class="list-group list-group-flush mb-5">
+						<a href="BookCart.do"><li class="list-group-item active">북카트</li></a>
+						<a href="borrowList.do?return_ok=Y"><li class="list-group-item">대출현황/이력</li></a>
+						<a href="#"><li class="list-group-item">나의도서정보</li></a>						
+						<a href="#"><li class="list-group-item">개인정보수정</li></a>
+					</ul>
+			  </div>
+			</div>
+			
+			<!-- 메인내용 -->
+			<div class="col-md-9">
+			  <div class="p-4">
+				  <!-- CARD WITH NAV -->
+					<div class="card-header">
+										
+
+										
+							<ul class="nav nav-tabs card-header-tabs">
+							
+									<li class="nav-item">
+									
+									<a class="nav-link active" id = "1" href="borrowList.do?return_ok=Y">대출현황</a>
+									</li>
+									
+									
+									<li class="nav-item">
+										<a class="nav-link" id ="4" href='borrowList.do?return_date=11"'>대출/반납이력</a>
+									</li>
+							</ul>
+					</div>
+						
 
 	<section id="contact" class="py-3">
 	<div class="cards">
@@ -340,15 +361,20 @@ $(function(){
       <img class="card__image" src="${b.b_image }" alt="wave" />
     </div>
     <div class="card-title">
-     
+        <span class="left"></span>
+        <span class="right"></span>
+      </a>
       <h2>
-           ${b.b_title }   
-          <small>${b.b_writer }</small>
+		대여일 : ${b.bor_date }<br>
+		반납일 : ${b.return_date }<br>
+		
       </h2>
     </div>
     <div class="card-flap flap1">
       <div class="card-description">
-        ${b.b_detail }
+        책 제목 : ${b.b_title }<br>
+        <hr>
+        저자 : ${b.b_writer }<br>
       </div>
       <div class="card-flap flap2">
         <div class="card-actions">
@@ -362,7 +388,6 @@ $(function(){
 	
 						
 	</section>
-	
   <!-- FOOTER -->
   <footer  id="main-footer" class="text-center p-4">
     <div class="container">

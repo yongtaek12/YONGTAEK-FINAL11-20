@@ -16,7 +16,7 @@ import com.example.demo.dao.BorrowDAO;
 import com.example.demo.dao.FolderDAO;
 import com.example.demo.dao.PostDAO;
 
-//확인
+//확인 Bookcart + borrowList page
 @Controller
 public class BookcartController {
 	@Autowired
@@ -52,6 +52,32 @@ public class BookcartController {
 		model.addAttribute("b", dao.selectBycust_No(map));
 
 	}	
+	
+	
+	@RequestMapping("/borrowList.do")
+	public void list2(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		int cust_no  =  (int) session.getAttribute("cust_no");
+		HashMap map=new HashMap();
+		map.put("cust_no", cust_no);
+		//반납완료도서
+		String return_ok = "Y";
+		if(request.getParameter("return_ok") != null) {
+			//return_ok = request.getParameter("return_ok");
+			map.put("return_ok", return_ok);
+
+		}
+		//연체도서
+		if(request.getParameter("return_date") != null) {
+			java.util.Calendar cal = java.util.Calendar.getInstance(); 
+	        java.sql.Date return_date = new java.sql.Date(cal.getTimeInMillis());		
+			map.put("return_date", return_date);
+
+		}
+		
+		model.addAttribute("b", dao.selectBycust_No2(map));
+
+	}
 	
 
 }

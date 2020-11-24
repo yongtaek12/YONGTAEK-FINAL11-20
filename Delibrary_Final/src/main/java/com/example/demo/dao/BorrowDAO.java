@@ -30,6 +30,11 @@ public class BorrowDAO {
 	public List<BorrowVO2> selectBycust_No(HashMap map){
 		return BorrowManager.selectBycust_No(map);
 	}
+	
+	//대출현황 목록 출력
+	public List<BorrowVO2> selectBycust_No2(HashMap map){
+		return BorrowManager.selectBycust_No2(map);
+	}
 
 
 	public int update(BorrowVO b) {
@@ -51,4 +56,6 @@ public class BorrowDAO {
 		return BorrowManager.findAll();
 
 	}
+
+
 }
